@@ -25,10 +25,15 @@ class Documents extends MY_Controller {
 		$order = $this->input->post('order');
 		$draw = $this->input->post('draw');
 
+		$division = $this->input->post('division');
+		$category = $this->input->post('category');
+
 		$select = "files.file_id, files.file_name, files.file_division, files.file_type, files.file_path, files.barcode, files.date_added, bc.barcode_path, bc.barcode_id";
 		$column_order = array('file_name','file_type');
 		$join = array('rms_barcodes as bc' => 'bc.fk_file_id = files.file_id');
-		$where = "";
+		$where = "file_status = 1";
+		$where .= ($division != 'All') ? " AND files.file_division LIKE '%$division%'" : "" ;
+		$where .= ($category != '') ? " AND files.file_type LIKE '%$category%'" : "" ;
 		$list = datatables('rms_files as files',$column_order, $select, $where, $join, $limit, $offset ,$search, $order);
 		$new_array = array();
         foreach ($list['data'] as $key => $value) {

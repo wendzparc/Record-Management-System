@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends MY_Controller {
 
 	public function index(){
-		if($_SESSION['user_type'] == 1) {
+		if($_SESSION['user_type'] != 3) {
 			$data = array(
 				'title' => 'Users'
 			);
@@ -149,7 +149,7 @@ class Users extends MY_Controller {
 			if (empty($password)) {
 				unset($_POST['password']);
 			}
-			if ($user_type == 2) {
+			if ($user_type != 3) {
 				unset($_POST['office']);
 				unset($_POST['division']);
 			}
@@ -194,19 +194,133 @@ class Users extends MY_Controller {
 						);
 
 						if (!empty($middlename)) {
-							$SaveData['set']['middlename'] = $middlename;
+							$saveMetaData['set']['middlename'] = $middlename;
 						}
 						if (!empty($address)) {
-							$SaveData['set']['address'] = $address;
+							$saveMetaData['set']['address'] = $address;
 						}
 						if (!empty($phone)) {
-							$SaveData['set']['phone'] = $phone;
+							$saveMetaData['set']['phone'] = $phone;
 						}
 
 						$updateMeta = update('rms_usermeta',$saveMetaData['set'],$saveMetaData['where']);
 						if($updateMeta) {
 							$respond['status'] = "success";
 							$respond['msg'] = "User updated Successfully";
+						} else {
+							$respond['status'] = "error";
+							$respond['msg'] = "Something went wrong";
+						}
+					} else {
+						$respond['status'] = "error";
+						$respond['msg'] = "Something went wrong";
+					}
+				} // End of CheckUsername
+			} // End of ctr
+			json($respond);
+		}
+	}
+
+	public function updateMyProfile() {
+		$respond = array();
+        if (isset($_POST)) {
+			$ctr = 0;
+
+			$user_id	= trim($this->input->post('puser_id'));
+			$user_type	= trim($this->input->post('puser_type'));
+			$username	= trim($this->input->post('pusername'));
+			$email		= trim($this->input->post('pemail'));
+			$password 	= trim($this->input->post('ppassword'));
+			$firstname	= trim($this->input->post('pfirstname'));
+			$middlename	= trim($this->input->post('pmiddlename'));
+			$lastname	= trim($this->input->post('plastname'));
+			$phone		= trim($this->input->post('pphone'));
+			$address	= trim($this->input->post('paddress'));
+			$office		= trim($this->input->post('poffice'));
+			$division	= trim($this->input->post('pdivision'));
+
+			if (empty($middlename)) {
+				unset($_POST['pmiddlename']);
+			}
+			if (empty($address)) {
+				unset($_POST['paddress']);
+			}
+			if (empty($phone)) {
+				unset($_POST['pphone']);
+			}
+			if (empty($email)) {
+				unset($_POST['pemail']);
+			}
+			if (empty($password)) {
+				unset($_POST['ppassword']);
+			}
+			if ($user_type != 3) {
+				unset($_POST['poffice']);
+				unset($_POST['pdivision']);
+			}
+
+			foreach ($_POST as $key => $value) {
+				$name = ucfirst(str_replace('_', ' ', $key));
+				$this->form_validation->set_rules($key, $name, 'trim|required', array('required' => '{field} is required'));
+				if (!$this->form_validation->run()) {
+					if ($value == '') {
+						$respond[$key] = form_error($key);
+						$ctr += 1;
+					}
+				}
+			}
+			if ($ctr == 0) {
+				$chkUsernameData = array(
+					'select'	=> 'username',
+					'where'		=> "username = '$username' AND user_id != '$user_id'",
+				);
+				$chkUsername = getrow('rms_users',$chkUsernameData);
+				if($chkUsername) {
+					$respond['username'] = 'Username already Exists';
+					$ctr += 1;
+				} else {
+					$saveData = array(
+						'set'	=> array(
+							'username'	=> $username,
+						),
+						'where' => "user_id = '$user_id'",
+					);
+					if (!empty($email)) {
+						$saveData['set']['email'] = $email;
+					}
+					if (isset($password) || !empty($password)) {
+						$saveData['set']['password'] = password_hash($password, PASSWORD_DEFAULT);
+					}
+					$updateUser = update('rms_users',$saveData['set'],$saveData['where']);
+					if ($updateUser) {
+						$saveMetaData = array(
+							'set'	=> array(
+								'firstname'	=> $firstname,
+								'lastname'	=> $lastname,
+							),
+							'where' => "fk_user_id = '$user_id'",
+						);
+
+						if (!empty($middlename)) {
+							$saveMetaData['set']['middlename'] = $middlename;
+						}
+						if (!empty($address)) {
+							$saveMetaData['set']['address'] = $address;
+						}
+						if (!empty($phone)) {
+							$saveMetaData['set']['phone'] = $phone;
+						}
+						if (!empty($office)) {
+							$saveMetaData['set']['office'] = $office;
+						}
+						if (!empty($division)) {
+							$saveMetaData['set']['division'] = $division;
+						}
+
+						$updateMeta = update('rms_usermeta',$saveMetaData['set'],$saveMetaData['where']);
+						if($updateMeta) {
+							$respond['status'] = "success";
+							$respond['msg'] = "Profile updated Successfully";
 						} else {
 							$respond['status'] = "error";
 							$respond['msg'] = "Something went wrong";

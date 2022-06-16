@@ -25,17 +25,11 @@ class MY_Controller extends MX_Controller {
 		if(!in_array($route,$exclusions)) {
 			if($route == 'login'){
 				if($this->session->has_userdata('user_id')){
-					redirect(base_url('users'));
-					// if($_SESSION['user_type'] == 1) {
-					// 	redirect(base_url('users'));
-					// } else {
-					// 	$data = array(
-					// 		'select'	=> 'usermeta_code',
-					// 		'where'		=> array('fk_user_id' => $_SESSION['user_id']),
-					// 	);
-					// 	$query = $this->MY_Model->getRows('pti_usermeta',$data,'row');
-					// 	redirect(base_url('employees/employeeDetails/'.$query->usermeta_code));
-					// }
+					if($_SESSION['user_type'] != 3) {
+						redirect(base_url('users'));
+					} else {
+						redirect(base_url('documents'));
+					}
 				}
 			} else {
 				if(!$this->session->has_userdata('user_id')){

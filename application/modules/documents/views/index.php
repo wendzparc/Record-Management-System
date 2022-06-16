@@ -1,3 +1,8 @@
+<?php
+    $division = array('General', 'Admin & Finance', 'Training & Planning', 'Operations');
+    $category = array('General', 'Admin & Finance', 'Training & Planning', 'Operations');
+?>
+
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -8,6 +13,35 @@
             <button class="btn btn-primary addDocument" data-toggle="modal" data-target="#modal_addDocument" type="button"><i class="fa fa-plus-circle"></i> Add Document</button>
         </ul>
     </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">Filter Division:</label>
+                <select name="byDivision" class="form-control byDivision">
+                    <option value="All" selected>All</option>
+                    <?php foreach($division as $key => $value) { ?>
+                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label class="control-label">Filter Category:</label>
+                <input type="text" class="form-control byCategory" name="byCategory">
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <button type="button" name="filterBtn" class="btn btn-primary filterBtn"><i class="fa fa-filter"></i> Filter</button>
+            </div>
+        </div>
+
+    </div><br>
+
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
@@ -68,10 +102,9 @@
                                     <label for="division" class="control-label">Division</label>
                                     <select name="division" class="form-control division">
                                         <option value="" selected hidden> - Please select - </option>
-                                        <option value="General">General</option>
-                                        <option value="Admin & Finance">Admin & Finance</option>
-                                        <option value="Training & Planning">Training & Planning</option>
-                                        <option value="Operations">Operations</option>
+                                        <?php foreach($division as $key => $value) { ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                        <?php } ?>
                                     </select>
                                     <small class="err"></small>
                                 </div>
@@ -130,10 +163,9 @@
                                     <label for="division" class="control-label">Division</label>
                                     <select name="division" class="form-control division">
                                         <option value="" selected hidden> - Please select - </option>
-                                        <option value="General">General</option>
-                                        <option value="Admin & Finance">Admin & Finance</option>
-                                        <option value="Training & Planning">Training & Planning</option>
-                                        <option value="Operations">Operations</option>
+                                        <?php foreach($division as $key => $value) { ?>
+                                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                        <?php } ?>
                                     </select>
                                     <small class="err"></small>
                                 </div>

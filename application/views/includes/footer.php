@@ -40,6 +40,93 @@
             $(document).ready(function(){ 
                 $('[data-toggle="tooltip"]').tooltip();
             });
+
+            var base_url = $('input[name="base_url"]').val();
+            $(document).ready(function(){
+                $(document).on('click','.updateProfileBtn',function(){
+                    user_id = $(this).data('id');
+                    var data = updateAjax({ url: base_url + 'users/getUserInfo', data: { user_id: user_id}});
+                    updateClearError();
+                    updateInput('input[name="pfirstname"]', data.firstname);
+                    updateInput('input[name="pmiddlename"]', data.middlename);
+                    updateInput('input[name="plastname"]', data.lastname);
+                    updateInput('input[name="paddress"]', data.address);
+                    updateInput('input[name="pusername"]', data.username);
+                    updateInput('input[name="pemail"]', data.email);
+                    updateInput('input[name="pphone"]', data.phone);
+                    updateInput('select[name="poffice"]', data.office);
+                    updateInput('select[name="pdivision"]', data.division);
+                });
+
+                $(document).on('submit','.form_updateProfile',function(e){
+                    e.preventDefault();
+                    var form_data = new FormData($('.form_updateProfile')[0]);
+                    var sendAjaxVar = updateAjax({ url: base_url + 'users/updateMyProfile', data: form_data }, false);
+                    if (sendAjaxVar) {
+                        updateClearError();
+                        if (sendAjaxVar.status == "success") {
+                            location.reload();
+                        } else {
+                            $.each(sendAjaxVar, function (key, value) {
+                                $('input[name="' + key + '"]').next('.err').html(value);
+                                $('textarea[name="' + key + '"]').next('.err').html(value);
+                                $('select[name="' + key + '"]').next('.err').html(value);
+                            });
+                        }
+                    }
+                });
+
+            }); // End of Document Ready
+
+            function updateAjax(param = {},isReturn = true) {
+                if(isReturn === false){
+                    var return_response = null;
+                    $.ajax({
+                        url:param.url,
+                        type: 'post',
+                        data:param.data,
+                        async:false,
+                        processData: false,
+                        contentType: false,
+                        dataType:'json',
+                        beforeSend: function() {
+                        $('.overlay').show();
+                        },
+                        success:function(response){
+                            $('.overlay').hide();
+                            console.log(response);
+                            return_response = response;
+                        },error:function(e){
+                            console.log(e);
+                        }
+                    });
+                    return return_response;
+                } else {
+                    var return_data = null;
+                    $.ajax({
+                        url:param.url,
+                        type: 'post',
+                        data:param.data,
+                        async:false,
+                        dataType:'json',
+                        success:function(response){
+                            return_data = response;
+                        },error:function(e){
+                            console.log(e);
+                        }
+                    });
+
+                    if(isReturn){
+                        return return_data;
+                    }
+                }
+            }
+            function updateInput(element,value){
+                $(element).val(value);
+            }
+            function updateClearError() {
+                $('.err').html('');
+            }
         </script>
     </body>
 </html>

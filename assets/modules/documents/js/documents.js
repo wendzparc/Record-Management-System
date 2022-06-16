@@ -219,10 +219,16 @@ $(document).ready(function(){
 
     });
 
+    $(document).on('click', '.filterBtn', function() {
+        var division = $('.byDivision').val();
+        var category = $('.byCategory').val();
+        documentTable(division,category);
+    });
+
 }); // End of Document Ready
 
 // Document Table Function
-function documentTable() {
+function documentTable(division = 'All', category = '') {
     $('#tbl_documents').DataTable({
         "processing": true,
         "serverSide": true,
@@ -250,6 +256,7 @@ function documentTable() {
         "ajax": {
             "url": base_url + "documents/getDocumentList",
             "type": "POST",
+            "data": {division:division,category:category},
         },
         //Set column definition initialisation properties.
         "columnDefs": [
