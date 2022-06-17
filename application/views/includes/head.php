@@ -48,6 +48,9 @@
                         <li><a class="app-menu__item <?php echo $route=='users'?'active':''; ?>" href="<?php echo base_url('users')?>" aria-expanded="false"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label hide-menu">Users</span></a></li>
                     <?php } ?>
                     <li><a class="app-menu__item <?php echo $route=='documents'?'active':''; ?>" href="<?php echo base_url('documents')?>" aria-expanded="false"><i class="app-menu__icon fa fa-file"></i><span class="app-menu__label hide-menu">Documents</span></a></li>
+                    <?php if($_SESSION['user_type'] != 3) { ?>
+                        <li><a class="app-menu__item <?php echo $route=='historylogs'?'active':''; ?>" href="<?php echo base_url('historylogs')?>" aria-expanded="false"><i class="app-menu__icon fa fa-history"></i><span class="app-menu__label hide-menu">History Logs</span></a></li>
+                    <?php } ?>
                 </ul>
             </nav>
         </aside>

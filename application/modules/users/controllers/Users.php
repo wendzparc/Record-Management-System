@@ -90,6 +90,7 @@ class Users extends MY_Controller {
 						);
 						$inserMeta = insert('rms_usermeta',$saveMetaData);
 						if($inserMeta) {
+							$this->saveLogs("added {$username} as a Manager");
 							$respond['status'] = "success";
 							$respond['msg'] = "Manager added Successfully";
 						} else {
@@ -205,6 +206,7 @@ class Users extends MY_Controller {
 
 						$updateMeta = update('rms_usermeta',$saveMetaData['set'],$saveMetaData['where']);
 						if($updateMeta) {
+							$this->saveLogs("updated User {$username}");
 							$respond['status'] = "success";
 							$respond['msg'] = "User updated Successfully";
 						} else {
@@ -344,8 +346,14 @@ class Users extends MY_Controller {
 			'set'   => array( 'user_status' => $stat ),
 			'where' => array( 'user_id' => $user_id ),
 		);
+
+		$fetchData['select'] = "username";
+		$fetchData['where'] = "user_id = '$user_id'";
+		$fetch = getrow('rms_users',$fetchData,'row');
+
 		$query = update('rms_users', $data['set'], $data['where']);
 		if ($query) {
+			$this->saveLogs("Deactivated User {$fetch->username}");
 			$respond['status'] = "success";
 			$respond['msg']    = "User ".$infomsg;
 		} else {
@@ -431,8 +439,14 @@ class Users extends MY_Controller {
 			'set'   => array( 'user_status' => 0 ),
 			'where' => array( 'user_id' => $user_id ),
 		);
+
+		$fetchData['select'] = "username";
+		$fetchData['where'] = "user_id = '$user_id'";
+		$fetch = getrow('rms_users',$fetchData,'row');
+
 		$query = update('rms_users', $data['set'], $data['where']);
 		if ($query) {
+			$this->saveLogs("removed User {$fetch->username}");
 			$respond['status'] = "success";
 			$respond['msg']    = "User Removed";
 		} else {

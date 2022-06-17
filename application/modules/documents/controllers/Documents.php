@@ -140,6 +140,7 @@ class Documents extends MY_Controller {
 							);
 							$saveBarcode = insert('rms_barcodes',$barcodeData);
 							if($saveBarcode) {
+								$this->saveLogs("added {$title} Document");
 								$respond['status']	= "success";
 								$respond['msg'] 	= "Document Added Successfully";
 							} else {
@@ -162,6 +163,11 @@ class Documents extends MY_Controller {
 		$file_id		= $_POST['file_id'];
 		$file_path		= $_POST['file_path'];
 		$barcode_path	= $_POST['barcode_path'];
+
+		$fetchData['select'] = "file_name";
+		$fetchData['where'] = "file_id = '$file_id'";
+		$fetch = getrow('rms_files',$fetchData,'row');
+
 		$data = array('file_id' => $file_id);
 		$query = delete('rms_files',$data);
 		if ($query) {
@@ -170,6 +176,7 @@ class Documents extends MY_Controller {
 			$query2 = delete('rms_barcodes', $data2);
 			if($query2) {
 				unlink($barcode_path);
+				$this->saveLogs("removed '{$fetch->file_name}' Document");
 				response('success', 'success', 'Document File has been removed');
 			} else {
 				response('error', 'danger', 'Something went wrong');

@@ -16,6 +16,10 @@ class MY_Controller extends MX_Controller {
 			'css' => array('documents.min.css'),
 			'js' => array('documents.min.js'),
 		),
+		'historylogs' => array(
+			'css' => array(),
+			'js' => array('historylogs.min.js'),
+		),
 	);
 
 	public function __construct(){
@@ -56,11 +60,20 @@ class MY_Controller extends MX_Controller {
   	}
 
 	public function get_profile(){
-		$data = array(
-			'select'	=> 'username',
-			'where'		=> array('user_id' => $_SESSION['user_id']),
-		);
-		$query = $this->MY_Model->getRows('rms_users',$data,'row');
+		$data['select'] = "CONCAT(firstname, ' ', lastname) as fullname";
+		$data['join']	= array('rms_usermeta as meta' => "meta.fk_user_id = user.user_id");
+		$data['where']	= "user_id = {$_SESSION['user_id']}";
+		$query = $this->MY_Model->getRows('rms_users as user',$data,'row');
+		return $query;
+	}
+
+	public function saveLogs($msg = '') {
+		$user_id	= $_SESSION['user_id'];
+		$fullname	= $this->get_profile()->fullname;
+
+		$data['fk_user_id'] = $user_id;
+		$data['log_message'] = "{$fullname} {$msg}";
+		$query = insert('rms_logs',$data);
 		return $query;
 	}
 
