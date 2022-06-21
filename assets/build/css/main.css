@@ -7,7 +7,25 @@
 @import url(https://fonts.googleapis.com/css?family=Niconne);
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,600&display=swap);:root {
     --blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#ffffff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:'Poppins',sans-serif,"Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}
-/*!
+@font-face {
+  font-family: 'Lavishly Yours';
+  src: url('/assets/build/fonts/lavishly/LavishlyYours-Regular.woff2') format('woff2'),
+      url('/assets/build/fonts/lavishly/LavishlyYours-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Quicksand';
+  src: url('/assets/build/fonts/quicksand/Quicksand-Light.woff2') format('woff2'),
+      url('/assets/build/fonts/quicksand/Quicksand-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+  
+
+    /*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -18,7 +36,7 @@
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
-  --pink: #e83e8c;
+  --pink: #e83e8c; 
   --red: #dc3545;
   --orange: #fd7e14;
   --yellow: #ffc107;
@@ -247,10 +265,7 @@ th {
   text-align: inherit;
 }
 
-label {
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
+label {display: inline-block; margin-bottom: 0; color: #7e8186;}
 
 button {
   border-radius: 0;
@@ -1977,17 +1992,14 @@ pre code {
   width: 100%;
   height: 40px;
   line-height: 1.5;
-  color: #495057;
-  font-size: 15px;
-  background-color: #FFF;
+  color: #00e6ff;
+  font-size: 12px;
+  background-color: unset;
   background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 5px !important;
-  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  border: unset;
+  border-bottom: 1px solid #747678;
+border-radius: 0;
+padding-left: 0;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -2003,32 +2015,25 @@ pre code {
   border: 0;
 }
 
-.form-control:focus {
-  color: #495057;
-  background-color: #FFF;
-  border-color: #0C4ABA;
-  outline: 0;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
+.form-control:focus {color: #fff; background-color: unset; border-color: #fff; outline: 0; -webkit-box-shadow: none; box-shadow: none; font-size: 20px;}
 
 .form-control::-webkit-input-placeholder {
-  color: #6c757d;
+  color: #07c6db;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #6c757d;
+  color: #07c6db;
   opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-  color: #6c757d;
+  color: #07c6db;
   opacity: 1;
 }
 
 .form-control::placeholder {
-  color: #6c757d;
+  color: #07c6db;
   opacity: 1;
 }
 
@@ -2043,7 +2048,14 @@ select.form-control:not([size]):not([multiple]) {
 
 select.form-control:focus::-ms-value {
   color: #495057;
-  background-color: #FFF;
+  background: #232f41 !important;
+}
+
+select option {
+
+  background: #232f41;
+  
+
 }
 
 .form-control-file,
@@ -4299,6 +4311,18 @@ input[type="button"].btn-block {
   background-size: 100% 100%;
 }
 
+@media only screen
+and (max-width : 860px) {
+  .login-content .login-box {display: block !important;position: relative !important;transform: unset !important;max-width: unset !important;width: 100% !important;left: 0 !important;top: 0 !important;margin: 50px auto !important; }
+  .login-box section {   margin: 0 auto; }
+  .login-box section:first-child {   border-top-left-radius: 30px !important;   border-top-right-radius: 30px; }
+  .login-box section:nth-child(2) {   border-top-right-radius: unset !important;   border-bottom-right-radius: unset !important; }
+}
+@media only screen
+and (max-width : 450px) {
+  .login-box section {width: 100% !important;}
+}
+
 @media (max-width: 575.98px) {
   .navbar-expand-sm > .container,
   .navbar-expand-sm > .container-fluid {
@@ -5742,43 +5766,17 @@ button.close {
   opacity: 0.5;
 }
 
-.modal-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 1px solid #e9ecef;
-  border-top-left-radius: 0.3rem;
-  border-top-right-radius: 0.3rem;
-  background: linear-gradient(198deg,#e29300a6 -163%,#eede80b8 -109%,#f3e78891 -60%,#e29300cf -21%,#efe182ab 40%,#e29300a3 107%);
-  color : #000;
-}
+.modal-header {display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; border-bottom: 1px solid #e9ecef; border-top-left-radius: 0.3rem; border-top-right-radius: 0.3rem; color: #fff; background: linear-gradient(to left,#cfd33d,#44aec2); padding: 13px 40px;}
 
-.modal-header .close {
-  padding: 1rem;
-  margin: -1rem -1rem -1rem auto;
-  color:#000;
-}
+.modal-header .close {padding: 10px 13px; margin: -5px -31px -5px 0; color: #fff; background: #002160; border-radius: 50%; opacity: 1 !important;}
+.modal-header .close:hover {background: #45aec1;}
 
 .modal-title {
   margin-bottom: 0;
   line-height: 1.5;
 }
 
-.modal-body {
-  position: relative;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
-  padding: 1rem;
-  background:linear-gradient(198deg,#e2930036 -163%,#eede8021 -109%,#f3e7884f -60%,#e293001c -21%,#efe18245 40%,#e293003b 107%);;
-}
+.modal-body {position: relative; -webkit-box-flex: 1; -ms-flex: 1 1 auto; flex: 1 1 auto; padding: 40px 40px 20px; background: #232f41;}
 
 .modal-footer {
   display: -webkit-box;
@@ -14811,6 +14809,7 @@ be a descendant of the grid when it is being dragged.
           align-items: flex-start;
 }
 
+
 .messanger .messages .message.me {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: reverse;
@@ -14912,7 +14911,7 @@ be a descendant of the grid when it is being dragged.
 
 .login-content .logo {
     margin:0 auto;
-    padding: 20px;
+    padding: 20px 15px 15px;
     text-align: center;
 }
 
@@ -14921,32 +14920,27 @@ be a descendant of the grid when it is being dragged.
   width:50%;
 }
 
-.login-content .login-box {
-  position: relative;
-  min-width: 425px;
-  min-height: 500px;
-  background: linear-gradient(198deg,#e2930036 -163%,#eede8021 -109%,#f3e7884f -60%,#e293001c -21%,#efe18245 40%,#e293003b 107%);
-  border-radius: 5px;
-  -webkit-box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
-          box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
-  -webkit-perspective: 800px;
-          perspective: 800px;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
-.login-content .login-box input{
-  height: 50px;
-  background-color: #0001e91a;
-  color: #fff;
-  border: 1px solid #041f24;
-}
-.login-content .login-box input:focus{
-  border: 1px solid #fff;
-}
-.login-content .login-box input::placeholder {
-  color: #fff;
-}
+.ftr_img{display: inline-block; width: 100%; height: 236px; overflow: hidden;}
+.ftr_img img{height: 100%; width: 100%; object-fit: contain}
+.owl-dots {display: flex; gap: 2px; justify-content: center; margin-top: 8px;align-items: center;}
+.owl-dots button {width: 10px; height: 10px; border-radius: 50%; border: 1px solid #fff !important;outline: none;}
+.owl-dots .active {border: 1px solid #fff !important; background: linear-gradient(to right,#44aec2,#cfd33d) !important;width: 15px; height: 15px;}
+
+.login-content .login-box {display: flex; position: fixed; transform: translate(-50%,-50%); top: 50%; left: 50%; border-radius: 15px; flex-wrap: wrap; align-items: center;width: 100%; max-width: 860px; margin: 0 auto;}
+.login-box section {min-height: 565px; width: 430px;background: linear-gradient(to bottom,#396e92,#ffffffc2);}
+.login-box section:first-child {display: flex; flex-direction: column; padding: 20px 0;border-top-left-radius: 72px;}
+.login-box section:first-child .updiv {min-height: 424px; margin-bottom: 1rem;position: relative;}
+.conte {padding: 20px 37px 15px;}
+.conte h3 {font-family: 'Lavishly Yours'; color: #fff; font-size: 40px; text-shadow: 0 0 4px rgb(0, 0, 0); line-height: 116%;}
+.conte p {line-height: 119%; font-size: unset; text-align: justify; color: #dfdfdf;}
+.login-box section:first-child ul {list-style: none; padding: 0; display: flex; gap: 40px; justify-content: center; align-items: center; margin: 0;}
+.login-box section:first-child ul figure {margin: 0;}
+
+
+.login-box section:nth-child(2) {min-height: 500px; background: #0000004f; border-top-right-radius: 55px; border-bottom-right-radius: 55px;}
+.login-content .login-box input{padding-left: 0;height: 50px; background-color: transparent; color: #fff; border: unset;border-bottom: 3px solid;border-radius: unset !important; border-image-source: linear-gradient(to left, #265f92, #d1d53c); border-image-slice: 3; border-width: 3px;}
+.login-content .login-box input:focus{ border-image-source: unset;}
+.login-content .login-box input::placeholder { color: #fff;}
 .login-content .login-box .login-head {
   margin-top: 0;
   margin-bottom: 20px;
@@ -14976,23 +14970,20 @@ be a descendant of the grid when it is being dragged.
 .login-content .login-box .btn-container  {
   margin-bottom: 0;
 }
+.login-content .login-box .btn-container h3 {font-weight: unset; font-size: 16px; color: #fff; margin-top: 9px; cursor: pointer;}
+.login-content .login-box .btn-container h3:hover {text-decoration: underline;}
 .login-content .login-box .btn-container button  {
-  border-radius: 5px;
-  width: 80%;
+  width: 100%;
+  margin-top: 30px;
+  border: none;
+  padding: 7px;
+  font-size: 19px;
+  letter-spacing: 3px;
+  background: linear-gradient(to left,#cfd33d,#44aec2);
+  color: #fff;
 }
-.login-content .login-box .login-form, .login-content .login-box .forget-form {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 50px;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  -webkit-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-}
+.login-content .login-box .btn-container button:hover {background: #344774;}
+.login-content .login-box .login-form, .login-content .login-box .forget-form {padding: 0 50px 25px;}
 
 .login-content .login-box .forget-form {
   opacity: 0;

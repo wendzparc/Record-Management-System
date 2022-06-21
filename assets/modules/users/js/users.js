@@ -96,8 +96,8 @@ $(document).ready(function(){
         input('input[name="lastname"]', data.lastname);
         input('input[name="phone"]', data.phone);
         input('input[name="address"]', data.address);
-        input('input[name="office"]', data.office);
-        input('input[name="division"]', data.division);
+        input('select[name="office"]', data.office);
+        input('select[name="division"]', data.division);
         $('.form_addUser')[0].reset();
     });
 
@@ -105,22 +105,30 @@ $(document).ready(function(){
     $(document).on('submit','.form_updateUser',function(e){
         e.preventDefault();
         var form_data = new FormData($('.form_updateUser')[0]);
-        var sendAjaxVar = sendAjax({ url: base_url + 'users/updateUser', data: form_data }, false);
-        if (sendAjaxVar) {
-            clearError();
-            if (sendAjaxVar.status == "success") {
-                swal(sendAjaxVar.msg, sendAjaxVar.status);
-                $('.form_updateUser')[0].reset();
-                usersTable();
-                $('#modal_updateUser').modal('toggle');
-            } else {
-                $.each(sendAjaxVar, function (key, value) {
-                    $('input[name="' + key + '"]').next('.err').html(value);
-                    $('textarea[name="' + key + '"]').next('.err').html(value);
-                    $('select[name="' + key + '"]').next('.err').html(value);
-                });
+        confirm_swal('Are you sure you want to update this User?', 'Update').then(function (val) {
+            
+            if (val === true) {
+                const sendAjaxVar = sendAjax({
+                    url: base_url + 'users/updateUser',
+                    data: form_data
+                }, false);
+                if (sendAjaxVar) {
+                    clearError();
+                    if (sendAjaxVar.status == "success") {
+                        swal(sendAjaxVar.msg, sendAjaxVar.status);
+                        $('.form_updateUser')[0].reset();
+                        usersTable();
+                        $('#modal_updateUser').modal('toggle');
+                    } else {
+                        $.each(sendAjaxVar, function (key, value) {
+                            $('input[name="' + key + '"]').next('.err').html(value);
+                            $('textarea[name="' + key + '"]').next('.err').html(value);
+                            $('select[name="' + key + '"]').next('.err').html(value);
+                        });
+                    }
+                }
             }
-        }
+        });
     });
 
 }); // End of Document Ready

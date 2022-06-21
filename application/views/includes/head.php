@@ -13,14 +13,16 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/css/buttons.bootstrap4.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/css/responsive.bootstrap4.min.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/css/custom.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/css/custom.css">        
         <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/jqueryui/jquery-ui.min.css">
+        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <?php
             __load_assets__($__assets__,'css');
             $method = $this->router->fetch_method();
         ?>
     </head>
+    
     <body class="app sidebar-mini rtl">
         <div class="overlay" style="z-index: 9999999;width:100%;height:100%;position:fixed;top:0;bottom:0;left:0;right:0;background-color:rgba(0,0,0,0.6);display:none;">
             <div class="loader"></div>
@@ -174,3 +176,4 @@
         </div>
       </div>
 </div>
+

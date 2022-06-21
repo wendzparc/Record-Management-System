@@ -156,8 +156,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Office <sup class="text-danger">*</sup></label>
-                                    <select name="" class="form-control">
-                                        <option value="" selected> - Please select - </option>
+                                    <select name="office" class="form-control">
+                                        <option value="office" selected hidden> - Please select - </option>
                                         <option value="MDRRMO">MDRRMO</option>
                                         <option value="MDRRMC">MDRRMC</option>
                                     </select>
@@ -167,8 +167,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label">Division <sup class="text-danger">*</sup></label>
-                                    <select name="" class="form-control">
-                                        <option value="" selected> - Please select - </option>
+                                    <select name="division" class="form-control">
+                                        <option value="" selected hidden> - Please select - </option>
                                         <option value="General">General</option>
                                         <option value="Admin & Finance">Admin & Finance</option>
                                         <option value="Training & Planning">Training & Planning</option>

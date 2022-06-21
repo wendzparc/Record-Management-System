@@ -1,17 +1,46 @@
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/css/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/build/css/owl.theme.default.min.css">
 <section class="material-half-bg">
 </section>
 <section class="login-content">
-    <div class="logo">
-        <a href="<?php echo base_url().'login'?>"><img src="<?php echo base_url('assets/build/images/main-logo.png') ?>" alt="Logo"></a>
-    </div>
+
     <div class="login-box">
+        <section>
+            <div class="updiv">
+                <div class="conte">
+                <h3>Welcome !</h3>
+                <p>This is just a dummy text, you can change or update this text whenever you want, This texts is for design purpose only.</p>
+                </div>                
+                <div id="carousel" class="owl-carousel">
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-1.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-2.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-3.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-4.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-5.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-6.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-7.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-8.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-9.jpg') ?>"></div>
+                    <div class="ftr_img"><img src="<?php echo base_url('assets/build/images/slideImge-10.jpg') ?>"></div>
+                </div>
+            </div>
+            <ul>
+                <li><figure><img src="<?php echo base_url('assets/build/images/logo1.png') ?>" alt="MDRRMC Cagdianao logo"></figure></li>
+                <li><figure><img src="<?php echo base_url('assets/build/images/logo2.png') ?>" alt="DOST LOGO"></figure></li>
+                <li><figure><img src="<?php echo base_url('assets/build/images/logo3.png') ?>" alt="Cagdianao logo"></figure></li>
+            </ul>
+
+        </section>
+        <section>    
+                <div class="logo">
+                     <a href="<?php echo base_url().'login'?>"><img src="<?php echo base_url('assets/build/images/main-logo.png') ?>" alt="Logo"></a>
+                </div>    
         <form class="login-form" id="login-form" action="<?php echo base_url('login/auth'); ?>" method="POST">
-            <div class="form-group text-center">
-                <h2 class="text-white">Login</h2>
+            <div class="text-center">
                 <?php if (isset($_SESSION['error'])){ ?>
                 <label class="text-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $_SESSION['error']; ?></label>
                 <?php }else{ ?>
-                    <br>
+                   
                 <?php } ?>
             </div>
             <div class="form-group">
@@ -24,14 +53,15 @@
             </div>
 
             <div class="form-group btn-container text-center">
-                <button class="btn btn-blue" name="button"><i class="fa fa-sign-in"></i> SIGN IN</button>
+                <button name="button">SIGN IN</button>
             </div><br />
 
             <div class="form-group btn-container text-center">
-                <button type="button" data-toggle="modal" data-target="#modal_registerApplicant" class="btn btn-blue btnRegister"><i class="fa fa-forward"></i> REGISTER</button>
+                <h3 data-toggle="modal" data-target="#modal_registerApplicant" >Register user</h3>
             </div>
 
         </form>
+        </section>
     </div>
 </section>
 
@@ -153,3 +183,5 @@
         </div>
       </div>
 </div>
+
+

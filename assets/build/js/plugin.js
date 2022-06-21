@@ -1,4 +1,5 @@
 var base_url = $('input[name="base_url"]').val();
+
 $(document).ready(function(){
     $(document).on('submit','.form_reset',function(e){
         e.preventDefault();
@@ -35,6 +36,7 @@ $(document).ready(function(){
             }
         }
     });
+
     $(document).on('submit','.form_recovery',function(e){
         e.preventDefault();
         var form_data = new FormData($('.form_recovery')[0]);

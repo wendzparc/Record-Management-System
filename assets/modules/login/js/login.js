@@ -28,6 +28,35 @@ $(document).ready(function(){
         }
     });
 
+    $("#carousel").owlCarousel({
+        nav:false,
+        margin:0,
+        autoplay: true,
+        loop: true,
+        dots:true,
+        responsive:{
+            0 : {
+                items: 1
+            },
+            601 : {
+                    items: 1
+            },
+            801 : {
+                items: 1
+            },
+            1011 : {
+                items: 1
+            },
+            1101 : {
+                items: 1
+            },
+            1401 : {
+                items: 1
+            }
+        
+        }
+        });
+
 });
 
 function sendAjax(param = {},isReturn = true){

@@ -26,7 +26,7 @@ class Users extends MY_Controller {
 		$select .= "meta.office, meta.division, meta.phone";
 		$column_order = array('firstname','username','office','division','phone','user_type','user_status');
 		$join = array('rms_usermeta as meta' => 'meta.fk_user_id = user.user_id');
-		$where = "user_type != 1";
+		$where = "user_type <> 1 AND user_status <> 0";
 		$list = datatables('rms_users as user',$column_order, $select, $where, $join, $limit, $offset ,$search, $order);
 		$new_array = array();
         foreach ($list['data'] as $key => $value) {
@@ -202,6 +202,12 @@ class Users extends MY_Controller {
 						}
 						if (!empty($phone)) {
 							$saveMetaData['set']['phone'] = $phone;
+						}
+						if (!empty($office)) {
+							$saveMetaData['set']['office'] = $office;
+						}
+						if (!empty($division)) {
+							$saveMetaData['set']['division'] = $division;
 						}
 
 						$updateMeta = update('rms_usermeta',$saveMetaData['set'],$saveMetaData['where']);

@@ -5,6 +5,7 @@
     <script src="<?php echo base_url()?>assets/build/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>assets/build/js/sweetalert2.min.js"></script>
     <script src="<?php echo base_url()?>assets/build/js/main.js"></script>
+    <script src="<?php echo base_url()?>assets/build/js/owl.carousel.min.js"></script>
     <!-- The javascript plugin to display page loading on top-->
     <script src="<?php echo base_url()?>assets/build/js/plugins/pace.min.js"></script>
     <script src="<?php echo base_url()?>assets/build/js/plugin.js"></script>
