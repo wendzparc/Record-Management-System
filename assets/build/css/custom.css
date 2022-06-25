@@ -1,0 +1,81 @@
+.table{
+    width: 100% !important;
+}
+.err{
+    color: red;
+}
+.recover-content, .reset-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-height: 80vh;
+}
+.recover-content .recover-box {
+    padding: 20px;
+  position: relative;
+  width: 400px;
+  min-height: auto;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
+  -webkit-perspective: 800px;
+          perspective: 800px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.reset-content .reset-box {
+    padding: 20px;
+  position: relative;
+  max-width: 400px;
+  /* min-width: 390px; */
+  min-height: auto;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
+          box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
+  -webkit-perspective: 800px;
+          perspective: 800px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.reset-content .logo, .recover-content .logo {
+    padding: 20px;
+}
+
+.reset-content .logo img, .recover-content .logo img {
+    max-width: 100%;
+}
+@media screen and (max-width: 1300px) and (min-width: 992px) {
+    .settings .col-lg-6{max-width: 100% !important;flex: 0 0 100% !important}
+    .con_forms .col-lg-3{max-width: 50% !important;flex: 0 0 50% !important}
+}
+@media screen and (max-width: 400px) {
+  .recover-content .recover-box{
+    width: 100%;
+  }
+}
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #0F48AF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    margin: 245px auto;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
